@@ -2,15 +2,14 @@
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>उड़ान कोचिंग सेंटर - प्रवेश आवेदन पत्र एवं नियम</title>
     
-    <!-- PWA Manifest Link (Relative for GitHub Pages) -->
+    <!-- PWA Manifest Link -->
     <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#3b82f6">
 
     <style>
-        /* Force background colors and watermarks to print */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -18,6 +17,7 @@
             font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -25,15 +25,17 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 30px;
-            padding: 30px 0;
+            gap: 20px;
+            padding: 20px 0 80px 0;
             color: #334155;
+            width: 100%;
         }
 
-        /* Strict A4 Page Setup */
+        /* Responsive Page Setup */
         .page {
             width: 210mm;
-            height: 297mm;
+            max-width: 95vw;
+            min-height: 297mm;
             background: #ffffff;
             padding: 12mm 15mm 18mm 15mm;
             border-radius: 12px;
@@ -51,7 +53,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%) rotate(-30deg);
-            font-size: 130px;
+            font-size: 110px;
             font-weight: 900;
             color: rgba(59, 130, 246, 0.06);
             text-transform: lowercase;
@@ -61,7 +63,7 @@
             user-select: none;
         }
 
-        /* Safe Zone Watermarks (Bottom Left & Right) */
+        /* Safe Zone Watermarks */
         .left-corner-watermark {
             position: absolute;
             bottom: 6mm;
@@ -90,10 +92,9 @@
             user-select: none;
         }
 
-        /* Border Frame inside the page */
         .border-frame {
             border: 1.5px solid #cbd5e1;
-            padding: 18px;
+            padding: 16px;
             border-radius: 12px;
             height: 100%;
             background: transparent;
@@ -104,44 +105,47 @@
             z-index: 2;
         }
 
-        /* Top Header */
+        /* Header */
         .header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             background: #f0fdf4;
-            padding: 12px 16px;
+            padding: 10px 12px;
             border-radius: 10px;
             border: 1px solid #dcfce7;
             margin-bottom: 12px;
+            gap: 8px;
         }
 
         .founder-box {
-            width: 90px;
+            width: 80px;
             text-align: center;
+            flex-shrink: 0;
         }
 
         .founder-img {
-            width: 65px;
-            height: 75px;
+            width: 60px;
+            height: 70px;
             object-fit: cover;
             border-radius: 6px;
             border: 1px solid #a7f3d0;
             background-color: #ffffff;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .founder-name {
             background-color: #3b82f6;
             color: white;
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 600;
             padding: 2px 4px;
             border-radius: 4px;
+            white-space: nowrap;
         }
 
         .founder-title {
-            font-size: 10px;
+            font-size: 9px;
             color: #64748b;
             margin-top: 2px;
         }
@@ -149,11 +153,10 @@
         .header-center {
             text-align: center;
             flex: 1;
-            padding: 0 12px;
         }
 
         .main-title {
-            font-size: 26px;
+            font-size: 22px;
             font-weight: 800;
             color: #1e293b;
             letter-spacing: -0.5px;
@@ -161,55 +164,59 @@
         }
 
         .tagline {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             color: #e11d48;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .contact-info {
-            font-size: 11px;
+            font-size: 10px;
             color: #475569;
             margin-bottom: 6px;
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 6px;
         }
 
         .highlights-bar {
             background-color: #ffffff;
             color: #2563eb;
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 600;
-            padding: 4px 10px;
+            padding: 4px 6px;
             border-radius: 20px;
             border: 1px solid #bfdbfe;
             display: flex;
-            justify-content: space-around;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
         }
 
-        /* Banner Titles */
         .title-row {
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
             justify-content: space-between;
-            margin: 10px 0 12px 0;
+            margin: 8px 0 12px 0;
+            gap: 8px;
         }
 
         .form-banner {
             background-color: #e0f2fe;
             color: #0369a1;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 700;
-            padding: 5px 20px;
+            padding: 5px 16px;
             border-radius: 20px;
             border: 1px solid #bae6fd;
             text-align: center;
         }
 
         .date-container {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             color: #475569;
         }
@@ -217,10 +224,10 @@
         .date-container input {
             border: none;
             border-bottom: 1.5px solid #94a3b8;
-            width: 110px;
+            width: 95px;
             outline: none;
             font-weight: 600;
-            font-size: 12px;
+            font-size: 11px;
             text-align: center;
             color: #1e293b;
         }
@@ -228,26 +235,28 @@
         /* Form Body */
         .form-body {
             display: flex;
-            gap: 20px;
+            flex-wrap: wrap;
+            gap: 16px;
             margin-bottom: 12px;
         }
 
         .fields-column {
             flex: 1;
+            min-width: 240px;
         }
 
         .field-item {
             display: flex;
             align-items: baseline;
-            margin-bottom: 9px;
-            font-size: 12px;
+            margin-bottom: 8px;
+            font-size: 11.5px;
             font-weight: 600;
             color: #334155;
         }
 
         .field-item label {
             white-space: nowrap;
-            margin-right: 8px;
+            margin-right: 6px;
         }
 
         .field-item input[type="text"],
@@ -259,57 +268,45 @@
             border-bottom: 1px dashed #cbd5e1;
             outline: none;
             padding: 2px 4px;
-            font-size: 12px;
+            font-size: 11.5px;
             font-weight: 500;
             color: #0f172a;
             background: transparent;
-            transition: border-color 0.2s;
-        }
-
-        .field-item input:focus {
-            border-bottom-color: #3b82f6;
         }
 
         .field-row-split {
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 9px;
-            font-size: 12px;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 11.5px;
             font-weight: 600;
             color: #334155;
         }
 
         .checkbox-group {
             display: flex;
-            gap: 12px;
+            gap: 8px;
             align-items: center;
             font-weight: 500;
         }
 
-        .checkbox-group label {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            cursor: pointer;
-            color: #475569;
-        }
-
-        /* Photo Column */
         .photo-column {
-            width: 130px;
+            width: 110px;
             text-align: center;
+            margin: 0 auto;
         }
 
         .photo-box {
-            width: 120px;
-            height: 150px;
+            width: 105px;
+            height: 135px;
             border: 2px dashed #cbd5e1;
             background: #f8fafc;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 8px auto;
+            margin: 0 auto 6px auto;
             position: relative;
             border-radius: 8px;
             overflow: hidden;
@@ -322,37 +319,36 @@
         }
 
         .photo-box span {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
             color: #94a3b8;
-            padding: 5px;
+            padding: 4px;
         }
 
         .upload-btn {
             background-color: #f1f5f9;
             color: #475569;
             border: 1px solid #cbd5e1;
-            padding: 5px 8px;
-            font-size: 11px;
+            padding: 6px 8px;
+            font-size: 10.5px;
             font-weight: 600;
             border-radius: 6px;
             cursor: pointer;
             width: 100%;
-            margin-top: 5px;
         }
 
-        /* Footer Split Tables */
+        /* Footer Grid */
         .footer-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 12px;
         }
 
         .declaration-box, .office-box {
             border: 1px solid #e2e8f0;
             border-radius: 10px;
-            padding: 12px;
-            font-size: 11px;
+            padding: 10px;
+            font-size: 10.5px;
             background: #fafafa;
         }
 
@@ -363,9 +359,9 @@
             font-weight: 700;
             padding: 3px;
             border-radius: 6px;
-            font-size: 11px;
-            margin-bottom: 8px;
-            width: 60%;
+            font-size: 10.5px;
+            margin-bottom: 6px;
+            width: 70%;
             margin-left: auto;
             margin-right: auto;
         }
@@ -373,30 +369,23 @@
         .declaration-text-with-check {
             display: flex;
             align-items: flex-start;
-            gap: 8px;
-            font-size: 10.5px;
-            line-height: 1.5;
+            gap: 6px;
+            font-size: 10px;
+            line-height: 1.4;
             color: #475569;
-            margin-bottom: 12px;
-            cursor: pointer;
-        }
-
-        .declaration-text-with-check input[type="checkbox"] {
-            margin-top: 2px;
-            accent-color: #2563eb;
-            cursor: pointer;
+            margin-bottom: 10px;
         }
 
         .signature-row {
             display: flex;
             justify-content: space-between;
             font-weight: 600;
-            font-size: 10px;
+            font-size: 9.5px;
             color: #64748b;
         }
 
         .office-row {
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             display: flex;
             color: #334155;
             font-weight: 500;
@@ -411,35 +400,34 @@
             border-bottom: 1px dotted #cbd5e1;
             flex: 1;
             outline: none;
-            font-size: 11px;
+            font-size: 10.5px;
             padding: 0 4px;
             background: transparent;
         }
 
-        /* Page 2 Specific Rules */
         .terms-banner {
             background-color: #e0f2fe;
             color: #0369a1;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 700;
-            padding: 8px 20px;
+            padding: 6px 16px;
             border-radius: 20px;
             border: 1px solid #bae6fd;
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .terms-list {
             list-style: none;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .terms-list li {
             position: relative;
-            padding-left: 24px;
-            margin-bottom: 10px;
-            font-size: 11.5px;
-            line-height: 1.5;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 10.5px;
+            line-height: 1.4;
             color: #334155;
             font-weight: 500;
         }
@@ -457,7 +445,7 @@
             background-color: #fef2f2;
             border: 1px solid #fecdd3;
             color: #9f1239 !important;
-            padding: 8px 10px 8px 28px;
+            padding: 6px 8px 6px 22px;
             border-radius: 6px;
             font-weight: 600 !important;
         }
@@ -465,24 +453,23 @@
         .highlight-item::before {
             content: "★" !important;
             color: #e11d48 !important;
-            left: 8px !important;
+            left: 6px !important;
         }
 
         .full-declaration-section {
             border: 1px solid #e2e8f0;
             background: #fafafa;
             border-radius: 10px;
-            padding: 12px;
+            padding: 10px;
             margin-bottom: 10px;
         }
 
-        /* Fee Structure Styles (Page 3) */
         .fee-section-title {
             text-align: center;
-            font-size: 14px;
+            font-size: 12.5px;
             font-weight: 700;
             color: #1e293b;
-            margin: 12px 0 8px 0;
+            margin: 10px 0 6px 0;
             background: #f1f5f9;
             padding: 4px;
             border-radius: 6px;
@@ -492,13 +479,13 @@
         .fee-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 12px;
-            font-size: 11px;
+            margin-bottom: 10px;
+            font-size: 10px;
         }
 
         .fee-table th, .fee-table td {
             border: 1px solid #cbd5e1;
-            padding: 6px 8px;
+            padding: 5px 6px;
             text-align: center;
         }
 
@@ -508,81 +495,84 @@
             font-weight: 700;
         }
 
-        .fee-table td {
-            color: #334155;
-            font-weight: 500;
-        }
-
-        .fee-table tr:nth-child(even) {
-            background-color: #f8fafc;
-        }
-
         .fee-notes {
             background-color: #fef3c7;
             border: 1px solid #fde68a;
             border-radius: 8px;
-            padding: 10px 14px;
-            margin-top: 10px;
-            font-size: 11px;
+            padding: 8px 12px;
+            margin-top: 8px;
+            font-size: 10px;
             color: #92400e;
         }
 
-        .fee-notes h4 {
-            font-size: 11.5px;
-            margin-bottom: 4px;
-        }
-
-        .fee-notes ul {
-            padding-left: 18px;
-        }
-
-        /* Bottom Alert Strip */
         .bottom-alert {
             background-color: #fef2f2;
             color: #9f1239;
             border: 1px solid #fecdd3;
             text-align: center;
-            font-size: 10.5px;
+            font-size: 9.5px;
             font-weight: 600;
-            padding: 6px;
+            padding: 5px;
             border-radius: 6px;
-            margin-top: 8px;
+            margin-top: 6px;
         }
 
-        /* Floating Controls Bar */
+        /* Mobile Controls Floating Bar */
         .controls {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 92vw;
+            max-width: 500px;
             background: rgba(255, 255, 255, 0.95);
-            padding: 10px 15px;
+            padding: 8px 12px;
             border: 1px solid #e2e8f0;
-            border-radius: 10px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
             display: flex;
-            gap: 10px;
+            justify-content: space-between;
+            gap: 6px;
             z-index: 1000;
+            backdrop-filter: blur(8px);
         }
 
         .btn {
+            flex: 1;
             background-color: #3b82f6;
             color: white;
             border: none;
-            padding: 8px 16px;
+            padding: 8px 6px;
             border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 12px;
-            transition: background 0.2s;
+            font-size: 11px;
+            text-align: center;
+            white-space: nowrap;
         }
 
         .btn-install { background-color: #8b5cf6; display: none; }
-        .btn-install:hover { background-color: #7c3aed; }
         .btn-lang { background-color: #10b981; }
-        .btn-lang:hover { background-color: #059669; }
-        .btn:hover { background-color: #2563eb; }
         .btn-reset { background-color: #ef4444; }
-        .btn-reset:hover { background-color: #dc2626; }
+
+        @media (max-width: 600px) {
+            .page {
+                padding: 10px;
+                border-radius: 6px;
+            }
+            .header {
+                flex-wrap: wrap;
+            }
+            .main-title {
+                font-size: 18px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .border-frame {
+                padding: 10px;
+            }
+        }
 
         /* STRICT PRINT CSS */
         @media print {
@@ -600,6 +590,8 @@
                 border-radius: 0;
                 box-shadow: none;
                 margin: 0;
+                width: 210mm;
+                max-width: 100%;
             }
             .controls, .upload-btn {
                 display: none !important;
