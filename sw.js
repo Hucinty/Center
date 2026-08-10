@@ -1,10 +1,10 @@
 ﻿const CACHE_NAME = 'udaan-app-v1';
 const ASSETS_TO_CACHE = [
   '/',
-  '/index.html',
-  '/manifest.json',
-  '/Vijay.jpg',
-  '/Birendra.jpg'
+  './index.html',
+  './manifest.json',
+  './Vijay.jpg',
+  './Birendra.jpg'
 ];
 
 self.addEventListener('install', (e) => {
