@@ -1,12 +1,12 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>उड़ान कोचिंग सेंटर - प्रवेश आवेदन पत्र एवं नियम</title>
     
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="/manifest.json">
+    <!-- PWA Manifest Link (Relative for GitHub Pages) -->
+    <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#3b82f6">
 
     <style>
@@ -44,7 +44,7 @@
             break-after: page;
         }
 
-        /* Center Watermark */
+        /* Center Watermark "udaan" */
         .page::before {
             content: "udaan";
             position: absolute;
@@ -61,7 +61,7 @@
             user-select: none;
         }
 
-        /* Corner Watermarks */
+        /* Safe Zone Watermarks (Bottom Left & Right) */
         .left-corner-watermark {
             position: absolute;
             bottom: 6mm;
@@ -576,6 +576,8 @@
             transition: background 0.2s;
         }
 
+        .btn-install { background-color: #8b5cf6; display: none; }
+        .btn-install:hover { background-color: #7c3aed; }
         .btn-lang { background-color: #10b981; }
         .btn-lang:hover { background-color: #059669; }
         .btn:hover { background-color: #2563eb; }
@@ -727,7 +729,7 @@
 
                     <div class="field-item">
                         <label data-hi="14. पहचान पत्र संख्या (वैकल्पिक) :" data-en="14. ID Number (Optional) :">14. पहचान पत्र संख्या (वैकल्पिक) :</label>
-                        <input type="text" placeholder="जैसे: Voter ID, Student ID" oninput="sanitizeIdInput(this)">
+                        <input type="text" id="idNumberInput" placeholder="जैसे: Voter ID, Student ID" oninput="sanitizeIdInput(this)">
                     </div>
 
                     <div class="field-item">
@@ -1041,6 +1043,7 @@
 
 <!-- Controls Floating Bar -->
 <div class="controls">
+    <button type="button" class="btn btn-install" id="installPwaBtn" data-hi="ऐप इंस्टॉल करें" data-en="Install App">ऐप इंस्टॉल करें</button>
     <button type="button" class="btn btn-lang" onclick="toggleLanguage()" id="langBtn">Switch to English</button>
     <button type="button" class="btn" onclick="window.print()" data-hi="प्रिंट करें / PDF सेव करें" data-en="Print / Save PDF">प्रिंट करें / PDF सेव करें</button>
     <button type="button" class="btn btn-reset" onclick="resetAll()" data-hi="रीसेट करें" data-en="Reset Form">रीसेट करें</button>
@@ -1048,13 +1051,34 @@
 
 <script>
     let currentLang = 'hi';
+    let deferredPrompt = null;
 
-    // Register Service Worker for PWA
+    // Register Service Worker with relative path
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/sw.js').catch(() => {});
+            navigator.serviceWorker.register('./sw.js')
+                .then(reg => console.log('SW Registered:', reg.scope))
+                .catch(err => console.error('SW Registration Error:', err));
         });
     }
+
+    // Capture PWA Installation Prompt
+    const installBtn = document.getElementById('installPwaBtn');
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        installBtn.style.display = 'inline-block';
+    });
+
+    installBtn.addEventListener('click', async () => {
+        if (!deferredPrompt) return;
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+            installBtn.style.display = 'none';
+        }
+        deferredPrompt = null;
+    });
 
     // Sanitize 12-digit number inputs for privacy
     function sanitizeIdInput(input) {
